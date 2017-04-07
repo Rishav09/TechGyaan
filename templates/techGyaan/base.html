@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{%load techGyaan_template_tags%}
+{%load staticfiles%}
+<html>
+	<head lang="en">
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="{%static 'techGyaan/mains.css' %}"/>
+		<title>TechGyaan</title>
+	</head>
+
+	<body id="top ">
+		<header>
+			<h1>
+				<a href="/techGyaan/">TechGyaan</a>
+			</h1>
+			<nav>
+				<a class="btn btn-alt" href="{% url 'about' %}">About Us</a>
+				{%if not user.is_authenticated%}
+				<a class="btn btn-alt" href="{%url 'auth_login'%}">Login</a>
+				{%endif%}
+				{%if user.is_authenticated%}
+				<a class="btn btn-alt" href="{%url 'auth_logout'%}?next=/techGyaan/">Logout</a>
+				{%endif%}
+				{%if not user.is_authenticated%}
+				<a class="btn btn-alt" href="{%url 'registration_register'%}">SignUp</a>
+				{%endif%}
+			</nav>
+		</header>
+		<div>
+			{%block body_block%}
+			{%endblock%}
+		</div>
+		<div>
+			<a href="/techGyaan/search/">Search</a>
+		<div>
+			{%block sidebar_block%}
+				{%get_category_list%}
+			{%endblock%}
+		</div>
+		<footer>
+			<a href="#top">Back to Top</a><br>
+			<hr>
+			<small>&copy;Rishav Sapahia</small><br>
+		</footer>
+	</body>
+</html>

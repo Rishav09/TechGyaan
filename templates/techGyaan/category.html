@@ -1,0 +1,34 @@
+{%extends 'techGyaan/base.html'%}
+{%load staticfiles%}
+	{%block body_block%}
+		<div>
+			{%if category %}
+				<h1>{{category.name}}</h1>
+				{%if pages%}
+					<ul>
+					{%for page in pages %}
+						<li><a href="{%url 'goto'%}?page_id={{page.id}}">{{page.title}}</a>
+						{%if page.views > 1%}
+							({{page.views}} views)
+						{%elif page.views==1%}
+							({{page.views}} views)
+						{%endif%}
+					</li>
+					{% endfor %}
+				{%else%}
+					<strong>No pages currently in category.</strong>
+				{% endif %}
+			{%else%}
+				The specified category does not exist!
+			{%endif%}
+		</div>
+		<div>	
+			<br>
+			{%if user.authenticated%}
+			{%if category%}
+				<a href="{%url 'show_category' category.slug%}">Add Page</a>
+			{% endif %}
+			{%endif%}
+		</div>
+	{%endblock%}
+
