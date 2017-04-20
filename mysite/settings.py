@@ -133,7 +133,7 @@ MEDIA_URL='/media/'
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[STATIC_DIRS,]
+STATICFILES_DIRS=[STATIC_DIR,]
 
 #for heroku
 import dj_database_url
